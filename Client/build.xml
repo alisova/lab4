@@ -1,0 +1,28 @@
+<project name="05.jar"  default = "Client.jar" >
+
+                 <target name="make.dirs" description="Make some dirs">
+                         <mkdir dir="build"/>
+                         <mkdir dir="build/class"/>
+                 </target>
+
+                 <target name="compile" description="compile java" depends="make.dirs">
+
+                             <javac destdir="build/class">
+                             <src path="src"/>
+                         </javac>
+                 </target>
+
+                 <target name="Client.jar" description="make jar file" depends="compile">
+                         <jar destfile="build/stuff.jar">
+				 <manifest>
+               				 <attribute name="Main-Class" value="Interface"/>
+           			 </manifest>
+                                 <fileset dir="build/class">
+                                        <include name="**/*.class"/>
+                                        <exclude name="**/CVS"/>
+                                 </fileset>
+                         </jar>
+                 </target>
+
+              
+           </project>
